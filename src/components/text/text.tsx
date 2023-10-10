@@ -21,7 +21,7 @@ export function Text({
   italic,
   ...rest
 }: TextProps) {
-  const fontFamily = getFontFamily(bold, italic, semiBold)
+  const fontFamily = getFontFamily(preset, bold, italic, semiBold)
 
   return (
     <RNText style={[$fontSizes[preset], { fontFamily }, style]} {...rest}>
@@ -30,7 +30,20 @@ export function Text({
   )
 }
 
-function getFontFamily(bold?: boolean, italic?: boolean, semiBold?: boolean) {
+function getFontFamily(
+  preset: TextVariants,
+  bold?: boolean,
+  italic?: boolean,
+  semiBold?: boolean
+) {
+  if (
+    preset === 'headingLarge' ||
+    preset === 'headingMedium' ||
+    preset === 'headingSmall'
+  ) {
+    return italic ? $fontFamily.boldItalic : $fontFamily.bold
+  }
+
   switch (true) {
     case bold && italic:
       return $fontFamily.boldItalic
