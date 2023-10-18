@@ -1,6 +1,6 @@
 import React from 'react'
-import { EyeOffIcon } from '../../assets/icons/eyeOffIcon'
-import { EyeOnIcon } from '../../assets/icons/eyeOnIcon'
+import { EyeOffIcon } from '../../assets/icons/EyeOffIcon'
+import { EyeOnIcon } from '../../assets/icons/EyeOnIcon'
 import { ThemeColors } from '../../theme/theme'
 import { useAppTheme } from '../../hooks/useAppTheme'
 
