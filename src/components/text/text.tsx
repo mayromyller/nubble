@@ -1,11 +1,14 @@
 import React from 'react'
-import {
-  Text as RNText,
-  TextProps as RNTextProps,
-  TextStyle
-} from 'react-native'
+import { TextStyle } from 'react-native'
 
-interface TextProps extends RNTextProps {
+import { createText } from '@shopify/restyle'
+
+import { Theme } from '../../theme/theme'
+
+const RestyleText = createText<Theme>()
+export type RestyleTextProps = React.ComponentProps<typeof RestyleText>
+
+interface TextProps extends RestyleTextProps {
   preset?: TextVariants
   bold?: boolean
   italic?: boolean
@@ -19,14 +22,17 @@ export function Text({
   bold,
   semiBold,
   italic,
-  ...rest
+  ...restyleTextProps
 }: TextProps) {
   const fontFamily = getFontFamily(preset, bold, italic, semiBold)
 
   return (
-    <RNText style={[$fontSizes[preset], { fontFamily }, style]} {...rest}>
+    <RestyleText
+      color="backgroundContrast"
+      style={[$fontSizes[preset], { fontFamily }, style]}
+      {...restyleTextProps}>
       {children}
-    </RNText>
+    </RestyleText>
   )
 }
 
