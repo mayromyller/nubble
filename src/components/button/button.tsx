@@ -4,24 +4,28 @@ import { Text } from '../text/text'
 import { buttonVariants } from './variants'
 import { ActivityIndicator } from '../activityIndicator/activityIndicator'
 
-export type ButtonVariant = 'primary' | 'outline' | 'secondary'
+export type ButtonVariant = 'primary' | 'outline'
 
 interface ButtonProps extends TouchableOpacityBoxProps {
   title: string
   loading?: boolean
   variant?: ButtonVariant
+  disabled?: boolean
 }
 
 export function Button({
   title,
   loading,
   variant = 'primary',
+  disabled,
   ...touchableOpacityBoxProps
 }: ButtonProps) {
-  const buttonVariant = buttonVariants[variant]
+  const buttonVariant =
+    buttonVariants[variant][disabled ? 'disabled' : 'default']
 
   return (
     <TouchableOpacityBox
+      disabled={disabled || loading}
       paddingHorizontal="s20"
       height={50}
       alignItems="center"
