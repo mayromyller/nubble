@@ -11,7 +11,7 @@ import { Box, BoxProps } from '../box/box'
 import { $fontFamily, $fontSizes, Text } from '../text/text'
 import { useAppTheme } from '../../hooks/useAppTheme'
 
-interface TextInputProps extends RNTextInputProps {
+export interface TextInputProps extends RNTextInputProps {
   label: string
   errorMessage?: string
   RightComponent?: React.ReactElement
@@ -45,7 +45,12 @@ export function TextInput({
           <RNTextInput
             ref={inputRef}
             placeholderTextColor={colors.gray2}
-            style={$textInputStyle}
+            style={[
+              $textInputStyle,
+              {
+                color: colors.grayBlack
+              }
+            ]}
             {...rnTextInputProps}
           />
           {RightComponent && (
