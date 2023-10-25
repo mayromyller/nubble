@@ -7,7 +7,7 @@ import { Button } from '../../../components/button/button'
 import { Icon } from '../../../components/icons/icon'
 import { Text } from '../../../components/text/text'
 import { Box } from '../../../components/box/box'
-import { Screen } from '../../../components/Screen/Screen'
+import { Screen } from '../../../components/screen/Screen'
 
 export function LoginScreen() {
   return (
