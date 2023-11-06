@@ -1,20 +1,36 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useForm } from 'react-hook-form'
 
-import { PasswordInput } from '../../../components/password-input/PasswordInput'
-import { TextInput } from '../../../components/text-input/text-input'
 import { Screen } from '../../../components/screen/Screen'
 import { Button } from '../../../components/button/button'
 import { Text } from '../../../components/text/text'
 import { Box } from '../../../components/box/box'
 import { RootStackParamList } from '../../../routes/routes'
 import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess'
+import { FormTextInput } from '../../../components/form/form-text-input/FormTextInput'
+import { FormPasswordTextInput } from '../../../components/form/form-text-input/FormPasswordTextInput'
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'SignUpScreen'>
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type FormSignUpScreen = {
+  username: string
+  name: string
+  email: string
+  password: string
+}
+
 export function SignUpScreen({ navigation }: ScreenProps) {
+  const { control, formState, handleSubmit } = useForm<FormSignUpScreen>({
+    defaultValues: {
+      username: '',
+      name: '',
+      email: '',
+      password: ''
+    }
+  })
   const { reset } = useResetNavigationSuccess()
   function submitForm() {
     reset({
@@ -27,21 +43,60 @@ export function SignUpScreen({ navigation }: ScreenProps) {
     })
   }
 
+  function onSubmit(data: FormSignUpScreen) {
+    console.log(data)
+  }
+
   return (
     <Screen canGoBack scrollable>
       <Text preset="headingLarge">Criar uma conta</Text>
 
       <Box mt="s32" mb="s48" rowGap="s20">
-        <TextInput label="Seu username" placeholder="@" />
+        <FormTextInput
+          control={control}
+          name="username"
+          label="Seu username"
+          placeholder="@"
+          autoCapitalize="none"
+          rules={{ required: 'Username obrigatório' }}
+        />
 
-        <TextInput label="Nome completo" placeholder="Digite seu nome" />
+        <FormTextInput
+          control={control}
+          name="name"
+          label="Nome completo"
+          placeholder="Digite seu nome"
+          autoCapitalize="words"
+        />
 
-        <TextInput label="E-mail" placeholder="digite seu e-mail" />
+        <FormTextInput
+          control={control}
+          name="email"
+          label="E-mail"
+          placeholder="digite seu e-mail"
+          autoCapitalize="words"
+        />
 
-        <PasswordInput label="Senha" placeholder="Digite sua senha" />
+        <FormPasswordTextInput
+          control={control}
+          name="password"
+          label="Senha"
+          placeholder="Digite sua senha"
+          rules={{
+            required: 'Senha obrigatória',
+            minLength: {
+              value: 8,
+              message: 'Senha deve conter no mínimo 8 caracteres'
+            }
+          }}
+        />
       </Box>
 
-      <Button title="Criar um conta" onPress={submitForm} />
+      <Button
+        disabled={!formState.isValid}
+        title="Criar um conta"
+        onPress={handleSubmit(onSubmit)}
+      />
     </Screen>
   )
 }
