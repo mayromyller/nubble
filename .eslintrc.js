@@ -2,6 +2,7 @@ module.exports = {
   root: true,
   extends: ['@react-native', 'prettier'],
   rules: {
-    'react-native/no-inline-styles': 'off'
+    'react-native/no-inline-styles': 'off',
+    'react/react-in-jsx-scope': 'off'
   }
 }

@@ -1,15 +1,27 @@
 import React from 'react'
 
 import { View } from 'react-native'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 
+import { PasswordInput } from '../../../components/password-input/PasswordInput'
 import { TextInput } from '../../../components/text-input/text-input'
+import { Screen } from '../../../components/screen/Screen'
 import { Button } from '../../../components/button/button'
-import { Icon } from '../../../components/icons/icon'
 import { Text } from '../../../components/text/text'
 import { Box } from '../../../components/box/box'
-import { Screen } from '../../../components/screen/Screen'
+import { RootStackParamList } from '../../../routes/routes'
 
-export function LoginScreen() {
+type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>
+
+export function LoginScreen({ navigation }: ScreenProps) {
+  function navigateToSignUp() {
+    navigation.navigate('SignUpScreen')
+  }
+
+  function navigateToForgotPasswordScreen() {
+    navigation.navigate('ForgotPasswordScreen')
+  }
+
   return (
     <Screen>
       <View>
@@ -22,29 +34,30 @@ export function LoginScreen() {
 
         <Box mt="s40">
           <Box mb="s16">
-            <TextInput
-              errorMessage="Mensagem de erro"
-              label="E-mail"
-              placeholder="Digite seu e-mail"
-            />
+            <TextInput label="E-mail" placeholder="Digite seu e-mail" />
           </Box>
 
           <Box>
-            <TextInput
-              label="Senha"
-              placeholder="Digite sua senha"
-              RightComponent={<Icon name="eyeOn" color="gray2" />}
-            />
+            <PasswordInput label="Senha" placeholder="Digite sua senha" />
           </Box>
 
-          <Text preset="paragraphSmall" mt="s8" color="primary">
+          <Text
+            preset="paragraphSmall"
+            bold
+            mt="s8"
+            color="primary"
+            onPress={navigateToForgotPasswordScreen}>
             Esqueci minha senha
           </Text>
         </Box>
 
         <Box rowGap="s12" mt="s48">
           <Button title="Entrar" />
-          <Button title="Criar uma conta" variant="outline" />
+          <Button
+            title="Criar uma conta"
+            variant="outline"
+            onPress={navigateToSignUp}
+          />
         </Box>
       </View>
     </Screen>
