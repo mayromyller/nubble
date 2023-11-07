@@ -10,7 +10,7 @@ import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSucc
 import {
   ForgotPasswordSchema,
   forgotPasswordSchema
-} from './forgotPassordSchema'
+} from './forgotPasswordSchema'
 import { FormTextInput } from '../../../components/form/form-text-input/FormTextInput'
 
 type ScreenProps = NativeStackScreenProps<
