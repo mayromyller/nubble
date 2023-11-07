@@ -14,7 +14,8 @@ import {
   FormPasswordTextInput
 } from '@components'
 
-import { RootStackParamList } from '../../../routes/routes'
+import { RootStackParamList } from '@routes'
+
 import { LoginSchema, loginSchema } from './loginSchema'
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>

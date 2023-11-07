@@ -1,8 +1,13 @@
 import React from 'react'
-import { TouchableOpacityBox, TouchableOpacityBoxProps } from '../box/box'
-import { Text } from '../text/text'
+
+import {
+  TouchableOpacityBox,
+  TouchableOpacityBoxProps,
+  Text,
+  ActivityIndicator
+} from '@components'
+
 import { buttonVariants } from './variants'
-import { ActivityIndicator } from '../activityIndicator/activityIndicator'
 
 export type ButtonVariant = 'primary' | 'outline'
 
