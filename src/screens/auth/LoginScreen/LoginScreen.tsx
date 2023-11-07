@@ -1,9 +1,9 @@
 import React from 'react'
-
 import { Alert, View } from 'react-native'
+
+import { zodResolver } from '@hookform/resolvers/zod'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 import {
   Box,
@@ -13,7 +13,6 @@ import {
   FormTextInput,
   FormPasswordTextInput
 } from '@components'
-
 import { RootStackParamList } from '@routes'
 
 import { LoginSchema, loginSchema } from './loginSchema'

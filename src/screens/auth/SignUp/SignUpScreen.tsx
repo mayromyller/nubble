@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 import {
   Box,
@@ -13,9 +13,8 @@ import {
   Screen,
   Text
 } from '@components'
-
-import { RootStackParamList } from '@routes'
 import { useResetNavigationSuccess } from '@hooks'
+import { RootStackParamList } from '@routes'
 
 import { SignUpSchemaProps, signUpSchema } from './signUpSchema'
 
