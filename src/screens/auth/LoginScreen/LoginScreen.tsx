@@ -1,19 +1,35 @@
 import React from 'react'
 
-import { View } from 'react-native'
+import { Alert, View } from 'react-native'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import { PasswordInput } from '../../../components/password-input/PasswordInput'
-import { TextInput } from '../../../components/text-input/text-input'
 import { Screen } from '../../../components/screen/Screen'
 import { Button } from '../../../components/button/button'
 import { Text } from '../../../components/text/text'
 import { Box } from '../../../components/box/box'
 import { RootStackParamList } from '../../../routes/routes'
+import { LoginSchema, loginSchema } from './loginSchema'
+import { FormTextInput } from '../../../components/form/form-text-input/FormTextInput'
+import { FormPasswordTextInput } from '../../../components/form/form-text-input/FormPasswordTextInput'
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>
 
 export function LoginScreen({ navigation }: ScreenProps) {
+  const { control, handleSubmit, formState } = useForm<LoginSchema>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: ''
+    },
+    mode: 'onChange'
+  })
+
+  function submitForm(data: LoginSchema) {
+    Alert.alert(`Email: ${data.email} senha: ${data.password}`)
+  }
+
   function navigateToSignUp() {
     navigation.navigate('SignUpScreen')
   }
@@ -34,11 +50,22 @@ export function LoginScreen({ navigation }: ScreenProps) {
 
         <Box mt="s40">
           <Box mb="s16">
-            <TextInput label="E-mail" placeholder="Digite seu e-mail" />
+            <FormTextInput
+              control={control}
+              name="email"
+              label="E-mail"
+              autoCapitalize="none"
+              placeholder="Digite seu e-mail"
+            />
           </Box>
 
           <Box>
-            <PasswordInput label="Senha" placeholder="Digite sua senha" />
+            <FormPasswordTextInput
+              control={control}
+              name="password"
+              label="Senha"
+              placeholder="Digite sua senha"
+            />
           </Box>
 
           <Text
@@ -52,7 +79,11 @@ export function LoginScreen({ navigation }: ScreenProps) {
         </Box>
 
         <Box rowGap="s12" mt="s48">
-          <Button title="Entrar" />
+          <Button
+            disabled={!formState.isValid}
+            title="Entrar"
+            onPress={handleSubmit(submitForm)}
+          />
           <Button
             title="Criar uma conta"
             variant="outline"
