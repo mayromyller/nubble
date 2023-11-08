@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Screen } from '../../../components/screen/Screen'
-import { Button } from '../../../components/button/button'
-import { Text } from '../../../components/text/text'
-import { Box } from '../../../components/box/box'
-import { RootStackParamList } from '../../../routes/routes'
-import { useResetNavigationSuccess } from '../../../hooks/useResetNavigationSuccess'
-import { FormTextInput } from '../../../components/form/form-text-input/FormTextInput'
-import { FormPasswordTextInput } from '../../../components/form/form-text-input/FormPasswordTextInput'
+import {
+  Box,
+  Button,
+  FormTextInput,
+  FormPasswordTextInput,
+  Screen,
+  Text
+} from '@components'
+import { useResetNavigationSuccess } from '@hooks'
+import { RootStackParamList } from '@routes'
 
 import { SignUpSchemaProps, signUpSchema } from './signUpSchema'
 
