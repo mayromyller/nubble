@@ -2,8 +2,8 @@ import React from 'react'
 
 import { NavigationContainer } from '@react-navigation/native'
 
-import { AppStackRouter } from './appStack.routes'
-import { AuthStackRouter } from './authStack.routes'
+import { AppStackRouter } from '../app/appStack.routes'
+import { AuthStackRouter } from '../auth/authStack.routes'
 
 export function Router() {
   const isLogged = true
