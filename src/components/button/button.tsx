@@ -39,7 +39,7 @@ export function Button({
       {...buttonVariant.container}
       {...touchableOpacityBoxProps}>
       {loading ? (
-        <ActivityIndicator theme={buttonVariant.content} />
+        <ActivityIndicator color={buttonVariant.content} />
       ) : (
         <Text preset="paragraphMedium" bold color={buttonVariant.content}>
           {title}
