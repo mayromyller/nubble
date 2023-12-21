@@ -18,7 +18,13 @@ import { HomeEmpty } from './components/HomeEmpty'
 import { HomeHeader } from './components/HomeHeader'
 
 export function HomeScreen({ navigation }: AppTabScreenProps<'HomeScreen'>) {
-  const { postList, loading, error, refresh, fetchNextPage } = usePostList()
+  const {
+    list: postList,
+    loading,
+    error,
+    refresh,
+    fetchNextPage
+  } = usePostList()
 
   const flatListRef = useRef<FlatList<Post>>(null)
   useScrollToTop(flatListRef)
