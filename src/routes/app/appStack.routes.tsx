@@ -10,7 +10,7 @@ export type AppStackParamList = {
   AppTabRouter: undefined
   SettingsScreen: undefined
   PostCommentScreen: {
-    postId: string
+    postId: number
   }
 }
 
