@@ -11,16 +11,18 @@ import {
   ViewContainer
 } from './components/ScreenContainer'
 
-interface ScreenProps extends BoxProps {
+export interface ScreenProps extends BoxProps {
   children: React.ReactNode
   canGoBack?: boolean
   scrollable?: boolean
+  title?: string
 }
 
 export function Screen({
   children,
   canGoBack = false,
   scrollable = false,
+  title,
   style,
   ...boxProps
 }: ScreenProps) {
@@ -46,16 +48,22 @@ export function Screen({
           ]}
           {...boxProps}>
           {canGoBack && (
-            <TouchableOpacityBox
-              onPress={navigation.goBack}
-              mb="s24"
-              flexDirection="row"
-              gap="s8">
-              <Icon name="arrowLeft" color="primary" />
-              <Text preset="paragraphMedium" semiBold>
-                Voltar
-              </Text>
-            </TouchableOpacityBox>
+            <Box justifyContent="space-between" flexDirection="row">
+              <TouchableOpacityBox
+                onPress={navigation.goBack}
+                mb="s24"
+                flexDirection="row"
+                gap="s8">
+                <Icon name="arrowLeft" color="primary" />
+                {!title && (
+                  <Text preset="paragraphMedium" semiBold>
+                    Voltar
+                  </Text>
+                )}
+              </TouchableOpacityBox>
+              {title && <Text preset="headingSmall">{title}</Text>}
+              {title && <Box width={20} height={20} />}
+            </Box>
           )}
           {children}
         </Box>
